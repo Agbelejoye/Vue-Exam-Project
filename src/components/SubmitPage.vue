@@ -34,7 +34,7 @@
       </label>
     </div>
 
-    <router-link to="/" class="submit-button">Submit</router-link>
+    <router-link to="/ResultView" class="submit-button">Submit</router-link>
   </div>
   </div>
 </template>

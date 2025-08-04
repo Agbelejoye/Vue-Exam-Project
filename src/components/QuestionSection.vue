@@ -1,97 +1,116 @@
 <template>
-  <div class="main">
+  <div class="main px-2">
     <div class="container">
-    <div class="question-box mx-auto mt-4">
-      <h1>Question 1</h1>
-      <p>What does the DOCTYPE declaration do in an HTML document?</p>
+      <QuestionButton />
+      <div class="question-box mx-auto mt-4">
+        <h1>Question {{ question?.id }}</h1>
+        <p>{{ question?.text }}</p>
 
-      <div class="form-check d-flex align-items-start">
-        <input class="form-check-input" type="radio" name="answer" value="a" id="optA">
-        <label class="form-check-label flex-grow-1" for="optA">
-          Informs the web browser about the version of HTML being used.
-        </label>
-      </div>
-
-      <div class="form-check d-flex align-items-start">
-        <input class="form-check-input" type="radio" name="answer" value="b" id="optB">
-        <label class="form-check-label flex-grow-1" for="optB">
-          Defines the character encoding of the document.
-        </label>
-      </div>
-
-      <div class="form-check d-flex align-items-start">
-        <input class="form-check-input" type="radio" name="answer" value="c" id="optC">
-        <label class="form-check-label flex-grow-1" for="optC">
-          Initiates the JavaScript engine in the web browser.
-        </label>
-      </div>
-
-      <div class="form-check d-flex align-items-start">
-        <input class="form-check-input" type="radio" name="answer" value="d" id="optD">
-        <label class="form-check-label flex-grow-1" for="optD">
-          Specifies the CSS file linked to the HTML document.
-        </label>
+        <div
+          v-for="(option, key) in question?.options"
+          :key="key"
+          class="form-check d-flex align-items-start"
+        >
+          <input
+            class="form-check-input"
+            type="radio"
+            :id="key"
+            name="answer"
+            :value="key"
+            v-model="selected"
+          />
+          <label class="form-check-label flex-grow-1 ms-2" :for="key">
+            {{ option }}
+          </label>
+        </div>
       </div>
     </div>
+    <Footer />
   </div>
-  </div>
-  
-  <Footer></Footer>
 </template>
 
 <script setup>
-import Footer from './Footer.vue';
+import { ref, onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import Footer from './Footer.vue'
+import QuestionButton from './QuestionButton.vue'
+import { useQuizStore } from '../composables/useQuizStore.js'
+
+const route = useRoute()
+const question = ref(null)
+const selected = ref(null)
+
+const {
+  state,
+  setAnswer,
+  getAnswer,
+  generateShuffledIds
+} = useQuizStore()
+
+const fetchQuestion = async (index) => {
+  if (state.shuffledIds.length === 0) {
+    await generateShuffledIds()
+  }
+
+  const shuffledId = state.shuffledIds[index - 1]
+  const res = await fetch(`http://localhost:3000/questions/${shuffledId}`)
+  question.value = await res.json()
+  selected.value = getAnswer(question.value.id) || null
+}
+
+watch(() => route.params.id, (newId) => {
+  fetchQuestion(parseInt(newId))
+})
+
+watch(selected, (val) => {
+  if (question.value?.id) {
+    setAnswer(question.value.id, val)
+  }
+})
+
+onMounted(() => {
+  fetchQuestion(parseInt(route.params.id))
+})
 </script>
+
 
 <style scoped>
 .main {
-      background-color: #f0f0f0;
-      font-family: Arial, sans-serif;
-      min-height: 22vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-    }
-    
-    .question-box {
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      width: 90%;
-      max-width: 100%;
-    }
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
 
-    .form-check {
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      padding: 15px;
-      margin-bottom: 10px;
-      transition: background-color 0.3s ease;
-    }
+.question-box {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
+}
 
-    .form-check:hover {
-      background-color: #e6f7ff;
-    }
+.form-check {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
 
-    .form-check-input {
-      transform: scale(1.2);
-      margin-top: 4px;
-    }
+.form-check:hover {
+  background-color: #e6f7ff;
+}
 
-    .form-check-label {
-      color: #333;
-      margin-left: 15px;
-    }
+@media (max-width: 768px) {
+  .question-box {
+    padding: 20px;
+  }
 
-    h1 {
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    p {
-      color: #555;
-      margin-bottom: 25px;
-    }
+  .form-check {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 </style>

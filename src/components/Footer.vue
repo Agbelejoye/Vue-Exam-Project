@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <footer class="footer ">
+    <footer class="footer animate__animated animate__slideInRight animate__delay-0.1s">
       <div class="footer-info">1 of 15 Questions</div>
       <div class="footer-actions">
         <router-link to="/ResultView" class="btn-custom">Skip All</router-link>

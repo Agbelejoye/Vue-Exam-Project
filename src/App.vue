@@ -4,6 +4,11 @@
 
 <script setup>
 
+// {
+//   path: '/QuestionSection/:id',
+//   component; QuestionSection
+// }
+
 </script>
 
 <style scoped>

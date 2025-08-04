@@ -1,7 +1,7 @@
 <template>
   
   <div class="main">
-    <div class="container p-4 mt-4 bg-white shadow rounded" style="max-width: 600px;">
+    <div class="container p-4 mt-4  rounded bg-white shadow" style="max-width: 600px;">
     <h1 class="text-center text-dark mb-4">Module 1 Test</h1>
 
     <div class="custom-box p-3 mb-4 rounded">
@@ -27,6 +27,8 @@
 </script>
 
 <style scoped>
+
+
 .main {
       background-color: #f0f2f5;
       /* margin-top: 10%; */
