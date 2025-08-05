@@ -1,0 +1,114 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What does the DOCTYPE declaration do in an HTML document?",
+      "options": [
+        "Informs the web browser about the version of HTML being used.",
+        "Defines the character encoding of the document.",
+        "Initiates the JavaScript engine in the web browser.",
+        "Specifies the CSS file linked to the HTML document."
+      ],
+      "answer": "Informs the web browser about the version of HTML being used."
+    },
+    {
+      "id": 2,
+      "question": "Which HTML element is used to define the structure of a table row?",
+      "options": ["<table>", "<td>", "<tr>", "<th>"],
+      "answer": "<tr>"
+    },
+    {
+      "id": 3,
+      "question": "Which CSS property is used to change the text color of an element?",
+      "options": ["font-style", "text-color", "color", "text-decoration"],
+      "answer": "color"
+    },
+    {
+      "id": 4,
+      "question": "What is the correct HTML element for inserting a line break?",
+      "options": ["<break>", "<br>", "<lb>", "<hr>"],
+      "answer": "<br>"
+    },
+    {
+      "id": 5,
+      "question": "Which tag is used to create a hyperlink in HTML?",
+      "options": ["<link>", "<href>", "<a>", "<hyper>"],
+      "answer": "<a>"
+    },
+    {
+      "id": 6,
+      "question": "What does CSS stand for?",
+      "options": [
+        "Cascading Style Sheets",
+        "Creative Style Syntax",
+        "Computer Style Sheets",
+        "Colorful Style System"
+      ],
+      "answer": "Cascading Style Sheets"
+    },
+    {
+      "id": 7,
+      "question": "Which HTML element defines the title of a document?",
+      "options": ["<head>", "<title>", "<meta>", "<header>"],
+      "answer": "<title>"
+    },
+    {
+      "id": 8,
+      "question": "How do you add a comment in a CSS file?",
+      "options": [
+        "// this is a comment",
+        "# this is a comment",
+        "<!-- this is a comment -->",
+        "/* this is a comment */"
+      ],
+      "answer": "/* this is a comment */"
+    },
+    {
+      "id": 9,
+      "question": "Which property is used to make text bold in CSS?",
+      "options": ["font-style", "font-weight", "text-style", "bold"],
+      "answer": "font-weight"
+    },
+    {
+      "id": 10,
+      "question": "What tag is used to define an unordered list?",
+      "options": ["<ol>", "<ul>", "<li>", "<list>"],
+      "answer": "<ul>"
+    },
+    {
+      "id": 11,
+      "question": "How can you include an external CSS file?",
+      "options": [
+        "<css src='style.css'>",
+        "<style href='style.css'>",
+        "<link rel='stylesheet' href='style.css'>",
+        "<script src='style.css'>"
+      ],
+      "answer": "<link rel='stylesheet' href='style.css'>"
+    },
+    {
+      "id": 12,
+      "question": "Which CSS property controls the size of text?",
+      "options": ["font-style", "text-size", "font-size", "text-style"],
+      "answer": "font-size"
+    },
+    {
+      "id": 13,
+      "question": "What is the default value of the position property in CSS?",
+      "options": ["relative", "fixed", "absolute", "static"],
+      "answer": "static"
+    },
+    {
+      "id": 14,
+      "question": "Which element is used to define a list item?",
+      "options": ["<ul>", "<li>", "<list>", "<item>"],
+      "answer": "<li>"
+    },
+    {
+      "id": 15,
+      "question": "Which CSS property sets the background color of an element?",
+      "options": ["bgcolor", "background-color", "color", "background"],
+      "answer": "background-color"
+    }
+  ]
+}
